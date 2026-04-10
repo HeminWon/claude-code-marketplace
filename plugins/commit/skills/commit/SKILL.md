@@ -24,24 +24,20 @@ allowed-tools:
 - 约定格式：`[type] [scope] [subject]`
 - 若未提供参数，则完全基于 staged diff 自动推断
 - 若仅提供部分参数（如 `type`），其余字段自动推断并让用户确认
-- 当 staged diff 过大或噪声过高时，可参考当前对话上下文辅助推断 `subject/body`（仅补充意图，不新增事实）
 
 ## Workflow
 
 1. 获取改动信息（仅暂存区，先轻后重）：
-   - `git status --short`
-   - `git diff --staged --stat`
-   - `git diff --staged --name-only`
-   - `git config user.name`、`git config user.email`
+   - 必要命令：`git status --short`、`git diff --staged --stat`、`git diff --staged --name-only`、`git config user.name`、`git config user.email`、`git config --local claude.commit.lang`
    - 若暂存区为空，提示用户先 stage 并停止。
-   - 仅在以下情况展开 `git diff --staged` 全量内容：类型/范围无法判断、存在 breaking 风险、用户要求精细对比。
+   - 条件命令：仅在类型/范围无法判断、存在 breaking 风险或用户要求精细对比时，展开 `git diff --staged` 全量内容。
 
 2. 分析改动：
    - 识别模块：基于路径/高频词确定模块或组件。
    - 识别类型：`feat`, `fix`, `refactor`, `perf`, `docs`, `style`, `test`, `build`, `chore`, `ci`。
    - 判断范围：单模块使用 `scope`，多模块省略 `scope`。
    - 评估复杂度：简单/中等/复杂（按语义影响判断）。
-   - Commit message 语言判断仅统计当前 git user 的最近三次提交，并忽略 MR/解决冲突类提交（例如 subject 含有 `MR`, `merge request`, `resolve conflict(s)`, `conflict`, `merge`, `解决冲突` 等关键词）。
+   - Commit message 语言优先使用 `git config --local claude.commit.lang`；若未配置，则基于项目变更内容与项目文档主语言联合推断。
    - 若 staged diff 过大导致成本过高，可参考当前对话上下文压缩语义，但必须先以 staged 事实做锚定。
 
 3. 生成 Commit Message（按改动复杂度自适应生成候选版本数（1-3个））：
@@ -74,11 +70,11 @@ allowed-tools:
 
 ## 核心规则
 
-- 优先级：staged 事实 > 用户显式参数（`$ARGUMENTS`）> 当前对话上下文
+- 优先级：staged 事实 > 用户显式参数（仅 `type/scope/subject`）> 当前对话上下文
 - 首轮仅使用 `--stat + --name-only`，不确定时再读取 `git diff --staged` 全量
 - 按改动复杂度自适应生成候选版本数（1-3个）
 - 候选阶段直接展示完整 Footer（候选间默认一致并冻结），提交时保持相同内容，并通过 heredoc 或 `-F` 保留多行结构
-- Commit message 语言：当前 git user 的近三次 commit → README → 英文（兜底）；自动忽略 MR/解决冲突类提交（关键词规则同上）
+- Commit message 语言：优先使用 `git config --local claude.commit.lang`；若未配置，则按项目变更内容 + README/文档主语言联合推断，最后英文兜底
 - 若对话上下文与 staged 事实冲突，立即降级为仅基于 staged 生成并请求用户确认
 - 各版本 Subject 大致相同，差异主要在 Body 详细程度
 - 严格遵循 Conventional Commits 和 Gitmoji 规范
