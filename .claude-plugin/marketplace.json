@@ -1,0 +1,12 @@
+{
+  "name": "hemin-marketplace",
+  "owner": {
+    "name": "HeminWon"
+  },
+  "plugins": [
+    {
+      "name": "commit",
+      "source": "./plugins/commit"
+    }
+  ]
+}
