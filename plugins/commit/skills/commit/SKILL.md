@@ -17,6 +17,7 @@ allowed-tools:
 ## Bundled Resources
 
 - `assets/commit-message-template.md`：提交信息模板与示例
+- `commands/configure.md`：配置 commit message 语言（写入 `git config --local claude.commit.lang`）
 
 ## Arguments
 

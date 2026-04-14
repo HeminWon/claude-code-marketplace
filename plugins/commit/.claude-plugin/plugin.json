@@ -1,7 +1,7 @@
 {
   "name": "commit",
   "description": "生成规范化 git commit message 并执行提交",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "heminwon"
   }
