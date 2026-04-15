@@ -12,6 +12,18 @@ Public Claude Code plugin marketplace with curated plugins for development workf
 
 ## Usage
 
+### Via `npx skills` (multi-agent)
+
+```bash
+npx skills add HeminWon/claude-code-marketplace
+```
+
+Supports Claude Code, Cursor, Codex, and [40+ more agents](https://github.com/vercel-labs/skills#supported-agents).
+
+---
+
+### Via Claude Code plugin system
+
 ### 1) Add marketplace
 
 ```bash
