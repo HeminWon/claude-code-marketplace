@@ -1,0 +1,8 @@
+{
+  "name": "weekly-report",
+  "description": "基于 Git 历史生成最近 7 天工作周报",
+  "version": "0.1.0",
+  "author": {
+    "name": "heminwon"
+  }
+}

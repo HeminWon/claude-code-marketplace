@@ -7,6 +7,10 @@
     {
       "name": "commit",
       "source": "./plugins/commit"
+    },
+    {
+      "name": "weekly-report",
+      "source": "./plugins/weekly-report"
     }
   ]
 }
