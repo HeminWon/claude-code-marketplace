@@ -59,13 +59,13 @@ allowed-tools:
    - 先输出摘要（files/modules/type/lines/complexity，是否展开 full diff）。
    - 若启用了对话上下文辅助推断，在摘要中显式说明。
    - 按改动复杂度自适应输出候选版本数（1-3个）并标注推荐版本（含完整 Footer）。
-   - 提示用户回复：版本号 / `y` 提交推荐版本 / `e` 编辑 / `n` 取消。
-   - 单次确认即提交：输入版本号或 `y` 后不再二次确认，直接执行 commit。
+   - 提示用户回复：版本号 / `y` 直接提交并 push 推荐版本 / `e` 编辑 / `n` 取消。
+   - 单次确认即执行：输入版本号后直接提交；输入 `y` 后直接提交推荐版本并立即 push（不再二次确认）。
 
 5. 提交与推送：
-   - 选择版本（或输入 `y`）后直接使用已展示的完整 message 提交。
+   - 选择版本号后使用已展示的完整 message 提交；输入 `y` 时使用推荐版本提交。
    - 使用 heredoc 或 `git commit -F <file>` 写入完整多行 commit message（避免多行被 `-m` 压缩），展示 commit hash。
-   - commit 成功后再使用 `git branch --show-current` 显示分支并询问是否 `git push`。
+   - 输入 `y` 后在 commit 成功后直接执行 `git push`；输入版本号后保持原流程：显示分支并询问是否 push。
    - 选择 `e` 进入交互式编辑 subject/body 后重新生成；Footer 按规则自动重算并保持结构不变。
 
 
