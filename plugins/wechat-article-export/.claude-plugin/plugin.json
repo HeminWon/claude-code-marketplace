@@ -1,7 +1,7 @@
 {
   "name": "wechat-article-export",
   "description": "将微信公众号文章导出为 Markdown 并整理产物到所需目录",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "heminwon"
   }
