@@ -11,6 +11,10 @@
     {
       "name": "weekly-report",
       "source": "./plugins/weekly-report"
+    },
+    {
+      "name": "wechat-article-export",
+      "source": "./plugins/wechat-article-export"
     }
   ]
 }
