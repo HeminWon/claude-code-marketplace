@@ -2,6 +2,8 @@
 description: "将 to-obsidian 流程编排到 command：参数校验、下载转换、文件重组与按 Obsidian Markdown 规范整理"
 allowed-tools:
   - AskUserQuestion
+  - EnterPlanMode
+  - ExitPlanMode
   - Bash(wechat-article-to-markdown:*)
   - Bash(test:*)
   - Bash(mkdir:*)
@@ -100,10 +102,15 @@ allowed-tools:
 - 分割线统一为 `---`
 - 中英文、中文与数字之间按规范补空格
 
-约束：
+执行顺序（先计划、后确认、再改动）：
 
-- 所有会改动 Markdown 文本的动作（含补空格、标题修正、表格对齐）必须先征得用户同意。
-- 用户拒绝时，仅完成文件重组并保留原文。
+1. 在任何 Markdown 文本改动前，先进入 Plan 模式（`EnterPlanMode`）。
+2. 读取当前 Markdown 后，输出“拟变更点清单”，至少包含：
+   - 将新增或修正的 frontmatter 字段
+   - 图片路径/写法将如何调整（含目标路径模式）
+   - 标题层级、空行/缩进、表格、分割线、空格规范中将触发的具体项
+3. 使用 `ExitPlanMode` 展示计划并请求用户批准。
+4. 仅在用户同意后执行规范化编辑；用户拒绝时，仅完成文件重组并保留原文。
 
 ## Output
 
