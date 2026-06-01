@@ -26,8 +26,8 @@ Refs: #123
 
 🤖 Generated with <tool> (<model>)
 
-Co-Authored-By: <AI tool> <email>
-Signed-off-by: Your Name <you@example.com>
+Co-Authored-By: <agent-name> <agent-email>
+Signed-off-by: <name> <email>
 ```
 
 ```text
@@ -41,8 +41,8 @@ Refs: #123
 
 🤖 Generated with <tool> (<model>)
 
-Co-Authored-By: <AI tool> <email>
-Signed-off-by: Your Name <you@example.com>
+Co-Authored-By: <agent-name> <agent-email>
+Signed-off-by: <name> <email>
 ```
 
 ```text
@@ -57,8 +57,8 @@ Refs: #123
 
 🤖 Generated with <tool> (<model>)
 
-Co-Authored-By: <AI tool> <email>
-Signed-off-by: Your Name <you@example.com>
+Co-Authored-By: <agent-name> <agent-email>
+Signed-off-by: <name> <email>
 ```
 
 ### 阶段 2：交互指令示例
@@ -82,8 +82,8 @@ Refs: #123
 
 🤖 Generated with <tool> (<model>)
 
-Co-Authored-By: <AI tool> <email>
-Signed-off-by: Your Name <you@example.com>
+Co-Authored-By: <agent-name> <agent-email>
+Signed-off-by: <name> <email>
 ```
 
 ```text
@@ -96,6 +96,6 @@ Closes: #456
 
 🤖 Generated with <tool> (<model>)
 
-Co-Authored-By: <AI tool> <email>
-Signed-off-by: Your Name <you@example.com>
+Co-Authored-By: <agent-name> <agent-email>
+Signed-off-by: <name> <email>
 ```

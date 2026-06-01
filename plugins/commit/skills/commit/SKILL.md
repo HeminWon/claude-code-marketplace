@@ -52,8 +52,8 @@ allowed-tools:
      - 空行
      - `🤖 Generated with <tool> (<model>)`
      - 空行
-     - `Co-Authored-By: <AI tool> <email>`
-     - `Signed-off-by: Name <email>`（若 `git config` 缺失则省略）
+     - `Co-Authored-By: <当前 AI tool> <该工具对应邮箱>`（自识别当前工具并填写对应邮箱，**禁止**使用 `git config user.email`；若无法确定邮箱则省略此行）
+     - `Signed-off-by: <name> <email>`（取自 `git config user.name` / `git config user.email`；若缺失则省略）
 
 4. 输出与交互：
    - 先输出摘要（files/modules/type/lines/complexity，是否展开 full diff）。
