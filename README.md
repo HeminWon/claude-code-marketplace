@@ -8,7 +8,10 @@ Public Claude Code plugin marketplace with curated plugins for development workf
 
 ## Available Plugins
 
-- `commit` — Generate standardized git commit messages and commit directly.
+- `commit` - Generate standardized git commit messages and commit directly.
+- `weekly-report` - Generate a recent 7 day work report from Git history.
+- `wechat-article-export` - Export WeChat articles as Markdown.
+- `hermes-tweet` - Add Hermes Agent X/Twitter workflows through Xquik.
 
 ## Usage
 
@@ -34,6 +37,12 @@ Supports Claude Code, Cursor, Codex, and [40+ more agents](https://github.com/ve
 
 ```bash
 /plugin install commit@hemin-marketplace
+```
+
+For Hermes Tweet:
+
+```bash
+/plugin install hermes-tweet@hemin-marketplace
 ```
 
 ### 3) Configure commit language (local repo)
@@ -72,4 +81,3 @@ Optional: check current plugin status/version.
 ```bash
 /plugin marketplace remove hemin-marketplace
 ```
-
