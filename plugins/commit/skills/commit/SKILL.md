@@ -64,8 +64,8 @@ allowed-tools:
 
 5. 提交与推送：
    - 选择版本号后使用已展示的完整 message 提交；输入 `y` 时使用推荐版本提交。
-   - 使用 heredoc 或 `git commit -F <file>` 写入完整多行 commit message（避免多行被 `-m` 压缩），展示 commit hash。
-   - 输入 `y` 后在 commit 成功后直接执行 `git push`；输入版本号后保持原流程：显示分支并询问是否 push。
+   - 提交执行模板使用 `mktemp` + `trap 'rm -f "$tmpfile"' EXIT` + `git commit -F "$tmpfile"`，避免多行被 `-m` 压缩；退出码变量用 `commit_rc`/`push_rc`/`exit_code`，禁止使用 `status`、`path`、`UID`、`RANDOM` 等特殊变量名。
+   - 输入 `y` 后仅在 `git commit` 成功后直接执行 `git push`；输入版本号后保持原流程：显示分支并询问是否 push。
    - 选择 `e` 进入交互式编辑 subject/body 后重新生成；Footer 按规则自动重算并保持结构不变。
 
 
@@ -74,7 +74,7 @@ allowed-tools:
 - 优先级：staged 事实 > 用户显式参数（仅 `type/scope/subject`）> 当前对话上下文
 - 首轮仅使用 `--stat + --name-only`，不确定时再读取 `git diff --staged` 全量
 - 按改动复杂度自适应生成候选版本数（1-3个）
-- 候选阶段直接展示完整 Footer（候选间默认一致并冻结），提交时保持相同内容，并通过 heredoc 或 `-F` 保留多行结构
+- 候选阶段直接展示完整 Footer（候选间默认一致并冻结），提交时保持相同内容，并通过 `mktemp` + `trap` + `git commit -F "$tmpfile"` 保留多行结构
 - Commit message 语言：优先使用 `git config --local claude.commit.lang`；若未配置，则按项目变更内容 + README/文档主语言联合推断，最后英文兜底
 - 若对话上下文与 staged 事实冲突，立即降级为仅基于 staged 生成并请求用户确认
 - 各版本 Subject 大致相同，差异主要在 Body 详细程度
