@@ -1,7 +1,6 @@
 ---
 name: wechat-article-export
 description: 下载并转换微信公众号文章为 Markdown，返回标题、作者、发布时间与产物路径。
-disable-model-invocation: true
 allowed-tools:
   - Bash
   - AskUserQuestion
