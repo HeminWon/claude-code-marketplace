@@ -1,5 +1,6 @@
 ---
 description: "将 to-obsidian 流程编排到 command：参数校验、下载转换、文件重组与按 Obsidian Markdown 规范整理"
+disable-model-invocation: true
 allowed-tools:
   - AskUserQuestion
   - EnterPlanMode
@@ -43,7 +44,7 @@ allowed-tools:
 
 ### 2) 抓取并转换（调用 skill）
 
-调用 `wechat-article-export` skill 执行下载与转换，不在本 command 内重复实现。
+通过 `Skill` 工具调用 `wechat-article-export:wechat-article-export`，传入文章链接，执行下载与转换，不在本 command 内重复实现。
 
 完成后必须拿到并记录：
 
